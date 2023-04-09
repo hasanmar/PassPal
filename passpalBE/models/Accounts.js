@@ -1,8 +1,6 @@
 // Require Mongoose
 const mongoose = require('mongoose');
 
-// Schema
-const mongoose = require('mongoose');
 
 const AccountsSchema = mongoose.Schema({
     website: {
@@ -19,7 +17,11 @@ const AccountsSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    user_id: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 
 },
     {
