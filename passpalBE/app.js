@@ -1,41 +1,69 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// Dependencies
+const express = require('express');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Require and initialze dotenv
+require('dotenv').config();
 
-var app = express();
+// PORT Configuration
+const port = 5010;
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// Initailze Express
+const app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Look for all the static files in public folder (css, JS, Images, Audio, Videos).
+app.use(express.static("public"));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Require Express-EJS-Layouts
+const expressLayouts = require("express-ejs-layouts");
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// Look in to views folder for a file named layout.ejs
+app.use(expressLayouts);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// Express Session and Passport
+let session = require('express-session');
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// Session
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: false,
+  cookie: { maxAge: 36000000 }
+}));
 
-module.exports = app;
+
+// Sharing the information with all web pages.
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+})
+
+// Import Routes
+const indexRoute = require('./routes/index');
+// const articleRoute = require('./routes/articles');
+// const authorRoute = require('./routes/authors');
+// const authRoute = require('./routes/auth');
+
+// Mount Routes
+app.use('/', indexRoute);
+// app.use('/', articleRoute);
+// app.use('/', authorRoute);
+// app.use('/', authRoute);
+
+// Node.js to look in a folder views for all the ejs files.
+app.set("view engine", "ejs");
+
+mongoose.set('strictQuery', false);
+// MongoDB Connection
+mongoose.connect('mongodb+srv://admin:admin@cluster0.f2mq1pr.mongodb.net/?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+
+// Listen to specific port for incomming requests
+app.listen(port, () => {
+  console.log(`passpal is running on ${port}`);
+})
+
+app.get("/a", (req, res) => {
+  res.render("home/another");
+})
