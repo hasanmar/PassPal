@@ -45,11 +45,13 @@ const accountRoute = require('./routes/accountRoute');
 const authRoute = require('./routes/auth');
 
 
+
 // Mount Routes
 app.use('/', indexRoute);
 app.use('/', historyRoute);
 app.use('/', accountRoute);
 app.use('/', authRoute);
+
 
 // Node.js to look in a folder views for all the ejs files.
 app.set("view engine", "ejs");
