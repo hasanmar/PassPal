@@ -55,7 +55,7 @@ app.set("view engine", "ejs");
 
 mongoose.set('strictQuery', false);
 // MongoDB Connection
-mongoose.connect('mongodb+srv://admin:admin@cluster0.f2mq1pr.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://admin:admin@cluster0.f2mq1pr.mongodb.net/passpal?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 
