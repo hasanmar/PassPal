@@ -1,8 +1,6 @@
 // Require Mongoose
 const mongoose = require('mongoose');
 
-// Schema
-const mongoose = require('mongoose');
 
 const accountsSchema = mongoose.Schema({
     website: {

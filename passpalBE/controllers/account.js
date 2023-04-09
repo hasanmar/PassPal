@@ -1,4 +1,4 @@
-const Account = require('../models/Account')
+const Account = require('../models/Accounts')
 
 exports.account_index_get = async (req, res) => {
     try {

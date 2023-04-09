@@ -39,28 +39,17 @@ app.use(function (req, res, next) {
 })
 
 // Import Routes
-<<<<<<< HEAD
-const indexRoute = require('./routes');
-// const articleRoute = require('./routes/articles');
-// const authorRoute = require('./routes/authors');
-const authRoute = require('./routes/auth');
-=======
 const indexRoute = require('./routes/index');
 const historyRoute = require('./routes/historyRoute');
 const accountRoute = require('./routes/accountRoute');
->>>>>>> 6a56f1747e2b7c39b2a596bdcb1e0d89a0ad30e1
+const authRoute = require('./routes/auth');
 
 
 // Mount Routes
 app.use('/', indexRoute);
-<<<<<<< HEAD
-// app.use('/', articleRoute);
-// app.use('/', authorRoute);
-app.use('/', authRoute);
-=======
 app.use('/', historyRoute);
 app.use('/', accountRoute);
->>>>>>> 6a56f1747e2b7c39b2a596bdcb1e0d89a0ad30e1
+app.use('/', authRoute);
 
 // Node.js to look in a folder views for all the ejs files.
 app.set("view engine", "ejs");

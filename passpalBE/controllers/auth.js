@@ -15,6 +15,9 @@ exports.auth_signup_get = (req, res) => {
 // }
 exports.auth_signup_post = (req, res) => {
     let user = new User(req.body);
+    user.emailAddress = req.body.emailAddress
+    console.log('body',req.body);
+    console.log("user",user);
     let hash = bcrypt.hashSync(req.body.password, salt);
   console.log(hash);
 
