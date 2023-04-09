@@ -5,29 +5,26 @@ const bcrypt = require('bcrypt');
 const userSchema = mongoose.Schema({
     username: {
         type: String,
-        required: true,
-        minlength: [3, "Last name must be more than 3 characters"],
-        maxlength: [99, "This is too much man..... Chill!!!"]
+        required: true
     },
     emailAddress: {
         type: String,
         required: true,
-        lowercase:true,
+        lowercase: true,
         unique: true
     },
-    password:{
+    password: {
         type: String,
-        required: true,
-        minlength: [6, "khalaas... your password is too weak"]
+        required: true
     }
 
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
 // verifyPassword
-userSchema.methods.verifyPassword = function(password){
+userSchema.methods.verifyPassword = function (password) {
     console.log(password);
     console.log(this.password);
     return bcrypt.compareSync(password, this.password);
