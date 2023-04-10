@@ -45,20 +45,14 @@ exports.account_detail_get = async (req, res) => {
 }
 
 exports.account_delete_get = async (req, res) => {
-    try {
-
-        const account = await Account.findByIdAndDelete(req.params.id)
-        res.json(account)
-    }
-    catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-
+    Account.findByIdAndDelete(req.query.id)
+    .then(acc=>res.json({acc}))
+    .catch(err =>console.log(err))
 }
 
 exports.account_edit_get = async (req, res) => {
     try {
-        const account = await Account.findById(req.params.id)
+        const account = await Account.findById(req.query.id)
         if (account == null) {
             res.status(404).json({ message: 'Account not found' })
         }
