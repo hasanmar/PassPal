@@ -42,23 +42,38 @@ app.use(function (req, res, next) {
 const indexRoute = require('./routes/index');
 const historyRoute = require('./routes/historyRoute');
 const accountRoute = require('./routes/accountRoute');
+const authRoute = require('./routes/auth');
+
 
 
 // Mount Routes
 app.use('/', indexRoute);
 app.use('/', historyRoute);
 app.use('/', accountRoute);
+app.use('/', authRoute);
+
 
 // Node.js to look in a folder views for all the ejs files.
 app.set("view engine", "ejs");
+app.set('views', './views');
+
+app.get('/signup', (req, res) => {
+  res.render(__dirname + '/views/signup.ejs');
+});
+
+
+
+
 
 mongoose.set('strictQuery', false);
 // MongoDB Connection
 mongoose.connect('mongodb+srv://admin:admin@cluster0.f2mq1pr.mongodb.net/passpal?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
+ 
 )
 
 // Listen to specific port for incomming requests
+
 app.listen(port, () => {
   console.log(`passpal is running on ${port}`);
 })
