@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 
-const AccountsSchema = mongoose.Schema({
+const accountsSchema = mongoose.Schema({
     website: {
         type: String,
         required: true
@@ -18,11 +18,11 @@ const AccountsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+
     user_id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }]
-
 },
     {
         timestamps: true
@@ -30,7 +30,7 @@ const AccountsSchema = mongoose.Schema({
 
 
 // User Model
-const Accounts = mongoose.model("Accounts", AccountsSchema);
+const Accounts = mongoose.model("Accounts", accountsSchema);
 
 // Exports
 module.exports = Accounts;

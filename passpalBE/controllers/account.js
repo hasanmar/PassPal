@@ -16,6 +16,7 @@ exports.account_create_get = (req, res) => {
 }
 
 exports.account_create_post = async (req, res) => {
+
     console.log(req.body);
     const account = new Account(req.body)
     try {
@@ -45,6 +46,7 @@ exports.account_detail_get = async (req, res) => {
 
 exports.account_delete_get = async (req, res) => {
     try {
+
         const account = await Account.findByIdAndDelete(req.params.id)
         res.json(account)
     }
