@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import  Axios  from 'axios'
 import jwt_decode from 'jwt-decode'
 import AccountList from "./account/AccountList";
+import HistoryList from './History/HistoryList'
 
 
 export default function App() {
@@ -81,6 +82,9 @@ export default function App() {
                 <Link to="/logout" onClick={onLogoutHandler}>Signout</Link> &nbsp;
               </div>
             </nav>
+          </div>
+          <div>
+            <HistoryList />
           </div>
           <div>
             <Routes>
