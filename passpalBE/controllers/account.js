@@ -44,15 +44,10 @@ exports.account_detail_get = async (req, res) => {
     }
 }
 
-exports.account_delete_get = (req, res) => {
-    console.log(req.body);
+exports.account_delete_get = async (req, res) => {
     Account.findByIdAndDelete(req.query.id)
-        .then((account) => {
-            res.json({ account })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    .then(acc=>res.json({acc}))
+    .catch(err =>console.log(err))
 }
 
 exports.account_edit_get = async (req, res) => {
