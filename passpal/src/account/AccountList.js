@@ -5,6 +5,7 @@ import AccountCreateForm from "./AccountCreateForm";
 import AccountEditForm from "./AccountEditForm";
 
 
+
 export default function AccountList(){
     const [accounts, setAccounts] = useState([]);
   const [isEdit, setIsEdit] = useState(false)
@@ -114,14 +115,19 @@ export default function AccountList(){
                   {allAccounts}
                 </tbody>
               </div>
-              {(!isEdit) ?
-              <AccountCreateForm addAccount={addAccount}/>
-                :
+              {(isEdit) ?
               <AccountEditForm key={currentAccount._id} account={currentAccount}
               editAccount={editAccount} />
-        
+              : null
               }
             </div>
       )
 
 }
+
+// {(!isEdit) ?
+//   <AccountCreateForm addAccount={addAccount}/>
+//     :
+//   <AccountEditForm key={currentAccount._id} account={currentAccount}
+//   editAccount={editAccount} />
+//   }

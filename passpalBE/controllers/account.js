@@ -44,22 +44,11 @@ exports.account_detail_get = async (req, res) => {
     }
 }
 
-<<<<<<<<< Temporary merge branch 1
-exports.account_delete_get = (req, res) => {
-    console.log(req.body);
-    Account.findByIdAndDelete(req.query.id)
-        .then((account) => {
-            res.json({ account })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-=========
+
 exports.account_delete_get = async (req, res) => {
     Account.findByIdAndDelete(req.query.id)
     .then(acc=>res.json({acc}))
     .catch(err =>console.log(err))
->>>>>>>>> Temporary merge branch 2
 }
 
 exports.account_edit_get = async (req, res) => {
