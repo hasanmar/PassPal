@@ -3,8 +3,7 @@ import Axios  from "axios";
 import Account from "./Account";
 import AccountCreateForm from "./AccountCreateForm";
 import AccountEditForm from "./AccountEditForm";
-
-
+import {Container, Form, Button, Table} from 'react-bootstrap'
 
 export default function AccountList(){
     const [accounts, setAccounts] = useState([]);
@@ -102,18 +101,22 @@ export default function AccountList(){
         ))
 
     return (
+      
             <div>
               <h1>AccountList</h1>
               <div>
+                <Table striped bordered hover>
                 <tbody>
                   <tr>
                     <th>UserName</th>
                     <th>Email Address</th>
                     <th>password</th>
                     <th>website</th>
+                    <th>Actions</th>
                   </tr>
                   {allAccounts}
                 </tbody>
+                </Table>
               </div>
               {(isEdit) ?
               <AccountEditForm key={currentAccount._id} account={currentAccount}
@@ -124,6 +127,7 @@ export default function AccountList(){
       )
 
 }
+
 
 // {(!isEdit) ?
 //   <AccountCreateForm addAccount={addAccount}/>

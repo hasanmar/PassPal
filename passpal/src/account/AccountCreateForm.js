@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import {Container, FormGroup, Button, FormLabel, FormControl} from 'react-bootstrap'
+
 
 
 export default function AccountCreateForm(props) {
@@ -23,27 +25,31 @@ export default function AccountCreateForm(props) {
   return (
     <div>
         <h1>Create Account</h1>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>UserName</label>
-                <input type="text" name="username" onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Email Address</label>
-                <input type="text" name="emailAddress" onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>password</label>
-                <input type="text" name="password" onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>website</label>
-                <input type="text" name="website" onChange={handleChange}></input>
-            </div>
-            <div>
-                <input type="submit" value="Add Account"></input>
-            </div>
-        </form>
+        <Container>
+            <FormGroup>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <FormLabel>UserName</FormLabel>
+                        <FormControl type="text" name="username" onChange={handleChange}></FormControl>
+                    </div>
+                    <div>
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl type="text" name="emailAddress" onChange={handleChange}></FormControl>
+                    </div>
+                    <div>
+                        <FormLabel>password</FormLabel>
+                        <FormControl type="text" name="password" onChange={handleChange}></FormControl>
+                    </div>
+                    <div>
+                        <FormLabel>website</FormLabel>
+                        <FormControl type="text" name="website" onChange={handleChange}></FormControl>
+                    </div>
+                    <div>
+                        <FormControl type="submit" value="Add Account"></FormControl>
+                    </div>
+                 </form>
+            </FormGroup> 
+        </Container>
     </div>
   )
 }
