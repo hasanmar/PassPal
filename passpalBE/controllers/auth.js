@@ -72,7 +72,7 @@ exports.auth_signin_post = async (req, res) => {
   
       jwt.sign(
         payload,
-        'SECRETKEY',
+        "SECRETKEY",
         { expiresIn: 36000000 },
         (err, token) => {
           if (err) throw err;
