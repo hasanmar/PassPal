@@ -31,7 +31,7 @@ exports.account_create_post = async (req, res) => {
 
 exports.account_detail_get = async (req, res) => {
     try {
-        const account = await Account.findById(req.params.id)
+        const account = await Account.findById(req.query.id)
         if (account == null) {
             res.status(404).json({ message: 'Account not found' })
         }
@@ -44,10 +44,15 @@ exports.account_detail_get = async (req, res) => {
     }
 }
 
-exports.account_delete_get = async (req, res) => {
+exports.account_delete_get = (req, res) => {
+    console.log(req.body);
     Account.findByIdAndDelete(req.query.id)
-    .then(acc=>res.json({acc}))
-    .catch(err =>console.log(err))
+        .then((account) => {
+            res.json({ account })
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 exports.account_edit_get = async (req, res) => {
@@ -66,22 +71,27 @@ exports.account_edit_get = async (req, res) => {
 
 }
 
-exports.account_edit_put = async (req, res) => {
-    try {
-        const account = await Account.findByIdAndUpdate(req.body._id, req.body, { new: true })
-        const oldAccount = await Account.findById(req.body._id)
-        if (account == null) {
-            res.status(404).json({ message: 'Account not found' })
-        }
-        else {
-            const saveOldAccount = new History(oldAccount)
-            saveOldAccount.save()
+exports.account_edit_put = (req, res) => {
+    Account.findById(req.body._id)
+        .then((account) => {
+            // res.redirect("/account/index");
+            const saveToHistory = new History({
+                website: account.website,
+                username: account.username,
+                emailAddress: account.emailAddress,
+                password: account.password,
+                user_id: account.user_id
+            })
+            console.log('saveToHistory', saveToHistory);
+            saveToHistory.save()
+            account.website = req.body.website
+            account.username = req.body.username
+            account.emailAddress = req.body.emailAddress
+            account.password = req.body.password
             account.save()
-            res.status(200)
-        }
-    }
-    catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-
+            res.json({ account })
+        })
+        .catch(err => {
+            console.log(err)
+        });
 }

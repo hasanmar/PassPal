@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.json());
 
 
-router.get("/history", historyCntrl.history_get);
-router.delete("/history/delete/:id", historyCntrl.history_delete_get);
+router.get("/history/", historyCntrl.history_get);
+router.delete("/history/delete", historyCntrl.history_delete_get);
 
 module.exports = router;

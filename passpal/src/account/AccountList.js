@@ -4,6 +4,7 @@ import Account from "./Account";
 import AccountCreateForm from "./AccountCreateForm";
 import AccountEditForm from "./AccountEditForm";
 
+
 export default function AccountList(){
     const [accounts, setAccounts] = useState([]);
   const [isEdit, setIsEdit] = useState(false)
@@ -121,6 +122,6 @@ export default function AccountList(){
         
               }
             </div>
-          )
+      )
 
 }

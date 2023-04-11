@@ -1,14 +1,16 @@
 import React,{useState, useEffect} from "react";
 import Signup from './user/signup'
 import Signin from './user/signin'
-import Account from './account/Account'
+import Account from "./account/Account";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import  Axios  from 'axios'
 import jwt_decode from 'jwt-decode'
 import AccountList from "./account/AccountList";
-
+import HistoryList from './History/HistoryList'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
+
 
   const[isAuth, setIsAuth] = useState(false)
   const[user , setUser] = useState({});
@@ -69,7 +71,7 @@ export default function App() {
   return(
         <div>
           <div>
-            <AccountList></AccountList>
+            {/* <AccountList></AccountList> */}
           </div>
         <Router>
           <div>
@@ -83,17 +85,21 @@ export default function App() {
             </nav>
           </div>
           <div>
+            {/* <HistoryList /> */}
+          </div>
+          <div>
             <Routes>
-              <Route path="/" element={
-                <AccountList />}>
-              </Route>
+              {/* <Route path="/" element={<AccountList />}>
+              </Route> */}
               <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
-              <Route path="/signin" element={<Signin login={loginHandler}></Signin>}>
-              </Route>
+              <Route path="/signin" element={<Signin login={loginHandler}></Signin>}></Route>
             </Routes>
           </div>
         </Router>
      </div>
+     
   )
   
 }
+
+

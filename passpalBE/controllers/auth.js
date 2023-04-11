@@ -35,12 +35,6 @@ exports.auth_signup_post = (req, res) => {
       res.send("Please try again later.");
     });
 }
-
-
-
-
-
-
 exports.auth_signin_get = (req, res) => {
     res.render("auth/signin");
 };
@@ -78,7 +72,7 @@ exports.auth_signin_post = async (req, res) => {
   
       jwt.sign(
         payload,
-        "SECRETKEY",
+        'SECRETKEY',
         { expiresIn: 36000000 },
         (err, token) => {
           if (err) throw err;
