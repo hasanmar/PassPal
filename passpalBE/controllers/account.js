@@ -44,7 +44,7 @@ exports.account_detail_get = async (req, res) => {
     }
 }
 
-exports.account_delete_get = async (req, res) => {
+exports.account_delete_get = (req, res) => {
     Account.findByIdAndDelete(req.query.id)
     .then(acc=>res.json({acc}))
     .catch(err =>console.log(err))
@@ -77,7 +77,6 @@ exports.account_edit_put = (req, res) => {
                 password: account.password,
                 user_id: account.user_id
             })
-            console.log('saveToHistory', saveToHistory);
             saveToHistory.save()
             account.website = req.body.website
             account.username = req.body.username
