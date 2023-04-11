@@ -44,6 +44,7 @@ exports.account_detail_get = async (req, res) => {
     }
 }
 
+
 exports.account_delete_get = async (req, res) => {
     Account.findByIdAndDelete(req.query.id)
     .then(acc=>res.json({acc}))

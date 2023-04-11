@@ -1,15 +1,19 @@
 import React,{useState, useEffect} from "react";
 import Signup from './user/signup'
 import Signin from './user/signin'
-import Account from './account/Account'
+import Account from "./account/Account";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import  Axios  from 'axios'
 import jwt_decode from 'jwt-decode'
 import AccountList from "./account/AccountList";
-import HistoryList from './History/HistoryList'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./Home";
+import Footer from "./Footer";
+import AccountCreateForm from "./account/AccountCreateForm";
 
 
 export default function App() {
+
 
   const[isAuth, setIsAuth] = useState(false)
   const[user , setUser] = useState({});
@@ -70,34 +74,57 @@ export default function App() {
   return(
         <div>
           <div>
-            <AccountList></AccountList>
+            {/* <AccountList></AccountList> */}
           </div>
         <Router>
           <div>
           <nav>
               <div>
                 <Link to="/">Home</Link> &nbsp;
-                <Link to="/signup">Signup</Link> &nbsp;
-                <Link to="/signin">Signin</Link> &nbsp;
-                <Link to="/logout" onClick={onLogoutHandler}>Signout</Link> &nbsp;
+                {isAuth ? 
+                <>
+                <Link to="/accounts" >My passwords</Link> 
+                <Link to="/accounts/add" >Add new account</Link> 
+                <Link to="/logout" onClick={onLogoutHandler}>Signout</Link> 
+                  </>
+                : 
+                <>
+                <Link to="/signup">Signup</Link>
+                <Link to="/signin">Signin</Link> 
+                </>
+                }
+                
+                
               </div>
             </nav>
           </div>
           <div>
-            <HistoryList />
+            {/* <HistoryList /> */}
           </div>
           <div>
             <Routes>
-              <Route path="/" element={
-                <AccountList />}>
-              </Route>
+              {/* <Route path="/" element={<AccountList />}>
+              </Route> */}
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/accounts" element={<AccountList />}></Route>
+              <Route path="/accounts/add" element={<AccountCreateForm />}></Route>
               <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
-              <Route path="/signin" element={<Signin login={loginHandler}></Signin>}>
+              <Route path="/signin" element={
+                isAuth ? 
+                <AccountList />
+                : 
+                <Signin login={loginHandler}></Signin>}>
               </Route>
             </Routes>
           </div>
         </Router>
+        <div>
+          <Footer></Footer>
+        </div>
      </div>
+     
   )
   
 }
+
+
