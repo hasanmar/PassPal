@@ -35,12 +35,6 @@ exports.auth_signup_post = (req, res) => {
       res.send("Please try again later.");
     });
 }
-
-
-
-
-
-
 exports.auth_signin_get = (req, res) => {
     res.render("auth/signin");
 };
