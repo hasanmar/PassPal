@@ -2,7 +2,7 @@ nav {
   background-color: rgb(86, 186, 236);
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 10px;
 }

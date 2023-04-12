@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import {Container, Form, Button, FormGroup, FormLabel, FormControl} from 'react-bootstrap'
 
 
 export default function AccountEditForm(props) {
@@ -71,32 +71,35 @@ export default function AccountEditForm(props) {
   const passwordStrength = checkPass(password)
 
   return (
-    <div>
+    <>
       <h1>Edit Account</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>UserName</label>
-          <input type="text" name="username" onChange={handleChange} defaultValue={props.account.username}></input>
-        </div>
-        <div>
-          <label>Email Address</label>
-          <input type="text" name="emailAddress" onChange={handleChange} defaultValue={props.account.emailAddress}></input>
-        </div>
-        <div>
-          <label>password</label>
-          <input type="text" name="password" onChange={(event) => { handleChange(event); savePassword(event) }} defaultValue={password}></input>
-          <div style={{ width: "30vw" }} ><ProgressBar variant="success" now={passwordStrength * 20} label={`${passwordStrength}/5`} /> </div>
-        </div>
-        <div>
-          <label>website</label>
-          <input type="text" name="website" onChange={handleChange} defaultValue={props.account.website}></input>
-        </div>
-        <div>
-          <input type="submit" value="Edit account"></input>
-        </div>
-      </form>
-      <button onClick={generateStrongPassword}> Generate password </button>
-
-    </div>
+        <Container>
+            <FormGroup>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <FormLabel>UserName</FormLabel>
+                        <FormControl type="text" name="username" onChange={handleChange} defaultValue={props.account.username}></FormControl>
+                    </div>
+                    <div>
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl type="text" name="emailAddress" onChange={handleChange} defaultValue={props.account.emailAddress}></FormControl>
+                    </div>
+                    <div>
+                        <FormLabel>password</FormLabel>
+                        <FormControl type="text" name="password" onChange={(event)=> {handleChange(event); savePassword(event)}} defaultValue={password}></FormControl>
+                        <div style={{ width: "30vw" }} ><ProgressBar variant="success" now={passwordStrength * 20} label={`${passwordStrength}/5`} /> </div>
+                        <Button onClick={generateStrongPassword}> Generate password </Button>
+                    </div>
+                    <div>
+                        <FormLabel>website</FormLabel>
+                        <FormControl type="text" name="website" onChange={handleChange} defaultValue={props.account.website}></FormControl>
+                    </div>
+                    <div>
+                        <FormControl type="submit" value="Edit account"></FormControl>
+                    </div>
+                </form>
+            </FormGroup>
+     </Container>
+    </>
   )
 }

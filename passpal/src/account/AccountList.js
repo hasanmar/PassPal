@@ -3,8 +3,7 @@ import Axios from "axios";
 import Account from "./Account";
 import AccountCreateForm from "./AccountCreateForm";
 import AccountEditForm from "./AccountEditForm";
-
-
+import {Container, Form, Button, Table} from 'react-bootstrap'
 
 export default function AccountList() {
   const [accounts, setAccounts] = useState([]);
@@ -58,56 +57,67 @@ export default function AccountList() {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
       })
-      .then(res => {
-        console.log("Account updated")
-        loadAccountsList()
-        console.log(res)
+        .then(res => {
+          console.log("Account updated")
+          loadAccountsList()
+          console.log(res)
+  
+        })
+        .catch(err=>console.log(err))
+    }
 
-      })
-      .catch(err => console.log(err))
-  }
+    const deleteAccount = (id) => {
+        Axios.delete(`account/delete?id=${id}`)
+        .then(res => {
+          console.log("Record Delete Successfully")
+          loadAccountsList()
+          console.log(res)
+        })
+        .catch(err => {
+          console.log("Error Deleting Account")
+          console.log(err)
+        })
+    } 
 
-  const deleteAccount = (id) => {
-    Axios.delete(`account/delete?id=${id}`)
-      .then(res => {
-        console.log("Record Delete Successfully")
-        loadAccountsList()
-        console.log(res)
-      })
-      .catch(err => {
-        console.log("Error Deleting Account")
-        console.log(err)
-      })
-  }
+    const allAccounts = accounts.map((account, index) => (
+        <tr key={index}>
+          <Account {...account} editView={editView} deleteAccount={deleteAccount} />
+    
+        </tr>
+        ))
 
-  const allAccounts = accounts.map((account, index) => (
-    <tr key={index}>
-      <Account {...account} editView={editView} deleteAccount={deleteAccount} />
-
-    </tr>
-  ))
-
-  return (
-    <div>
-      <h1>AccountList</h1>
-      <div>
-        <tbody>
-          <tr>
-            <th>UserName</th>
-            <th>Email Address</th>
-            <th>password</th>
-            <th>website</th>
-          </tr>
-          {allAccounts}
-        </tbody>
-      </div>
-      {(isEdit) ?
-        <AccountEditForm key={currentAccount._id} account={currentAccount}
-          editAccount={editAccount} />
-        : null
-      }
-    </div>
-  )
+    return (
+      
+            <div>
+              <h1>AccountList</h1>
+              <div>
+                <Table striped bordered hover>
+                <tbody>
+                  <tr>
+                    <th>UserName</th>
+                    <th>Email Address</th>
+                    <th>password</th>
+                    <th>website</th>
+                    <th>Actions</th>
+                  </tr>
+                  {allAccounts}
+                </tbody>
+                </Table>
+              </div>
+              {(isEdit) ?
+              <AccountEditForm key={currentAccount._id} account={currentAccount}
+              editAccount={editAccount} />
+              : null
+              }
+            </div>
+      )
 
 }
 
+
+// {(!isEdit) ?
+//   <AccountCreateForm addAccount={addAccount}/>
+//     :
+//   <AccountEditForm key={currentAccount._id} account={currentAccount}
+//   editAccount={editAccount} />
+//   }
