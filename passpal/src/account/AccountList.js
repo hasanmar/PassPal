@@ -77,6 +77,7 @@ export default function AccountList() {
           console.log("Error Deleting Account")
           console.log(err)
         })
+
     } 
 
     const allAccounts = accounts.map((account, index) => (

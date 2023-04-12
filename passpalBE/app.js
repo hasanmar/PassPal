@@ -1,6 +1,7 @@
 // Dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path')
 
 // Require and initialze dotenv
 require('dotenv').config();
@@ -12,8 +13,9 @@ const port = 5010;
 const app = express();
 
 // Look for all the static files in public folder (css, JS, Images, Audio, Videos).
-app.use(express.static("public"));
-
+const buildPath = path.join(__dirname, 'build')
+app.use(express.static(buildPath))
+app.use(express.json())
 // Require Express-EJS-Layouts
 const expressLayouts = require("express-ejs-layouts");
 
@@ -60,7 +62,9 @@ app.set('views', './views');
 app.get('/signup', (req, res) => {
   res.render(__dirname + '/views/signup.ejs');
 });
-
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 
 
