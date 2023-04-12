@@ -6,7 +6,7 @@ Passpal is a password management website.
 
 
 
-## getting started
+## Getting started
 [Visit the deployed website by clicking here](https://passpal.onrender.com)
 
 [Trello board](trello.com)
@@ -15,6 +15,9 @@ Passpal is a password management website.
  + Express MiddleWare
  + React
  + Node.js
+
+## ERD
+![passpal erd](https://i.imgur.com/0wvMzGA.png)
 ## Future enhancements
 + More security
 + Better ERD design
