@@ -123,7 +123,7 @@ export default function App() {
             </Routes>
           </div>
         </Router>
-        <div>
+        <div id="bottom">
           <Footer></Footer>
         </div>
      </div>
