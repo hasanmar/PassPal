@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import History from './History'
+import {Container, Form, Button, Table} from 'react-bootstrap'
+
 
 export default function HistoryList() {
 
@@ -50,20 +52,22 @@ export default function HistoryList() {
     ))
 
     return (
+    
         <div>
             <h1>Old account details</h1>
             <div>
-                <table>
+                <Table striped bordered hover>
                     <tbody>
                         <tr>
                             <th>website</th>
                             <th>username</th>
                             <th>email address</th>
                             <th>password</th>
+                            <td>Action</td>
                         </tr>
                         {allHistory}
                     </tbody>
-                </table>
+                </Table>
             </div>
         </div>
     )
