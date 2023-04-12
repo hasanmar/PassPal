@@ -2,23 +2,43 @@ import React, {useState} from 'react'
 import {Container, FormGroup, Button, FormLabel, FormControl} from 'react-bootstrap'
 
 
+import Axios from 'axios'
+import AccountList from './AccountList'
 
 export default function AccountCreateForm(props) {
     const [newAccount, setNewAccount] = useState({})
-
+    const [displayList, setDisplayList] = useState(false)
 
     const handleChange = (event) => {
         const attributeToChange = event.target.name
         const newValue = event.target.value
 
-        const account = {...newAccount}
+        const account = { ...newAccount }
         account[attributeToChange] = newValue
         console.log(account)
         setNewAccount(account)
     }
+    const addAccount = (account) => {
+        Axios.post("/account/add", account,
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            .then((response) => {
+                console.log('account', account);
+                console.log("Account Added Successfully!!!!")
+                setDisplayList(true)
+            })
+            .catch((err) => {
+                console.log("Error Adding Account")
+                console.log(err)
+            })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        props.addAccount(newAccount)
+        addAccount(newAccount)
         console.log(newAccount);
     }
 
@@ -52,4 +72,6 @@ export default function AccountCreateForm(props) {
         </Container>
     </div>
   )
+
+   
 }

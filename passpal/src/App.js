@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import  Axios  from 'axios'
 import jwt_decode from 'jwt-decode'
 import AccountList from "./account/AccountList";
+import HistoryList from './History/HistoryList'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Home";
 import Footer from "./Footer";
@@ -87,6 +88,7 @@ export default function App() {
                 <>
                 <Link to="/accounts" >My passwords</Link> 
                 <Link to="/accounts/add" >Add new account</Link> 
+                <Link to="/history" >History</Link> 
                 <Link to="/logout" onClick={onLogoutHandler}>Signout</Link> 
                   </>
                 : 
@@ -110,6 +112,7 @@ export default function App() {
               <Route path="/" element={<Home />}></Route>
               <Route path="/accounts" element={<AccountList />}></Route>
               <Route path="/accounts/add" element={<AccountCreateForm />}></Route>
+              <Route path="/history" element={<HistoryList />}></Route>
               <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
               <Route path="/signin" element={
                 isAuth ? 

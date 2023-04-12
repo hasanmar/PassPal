@@ -1,69 +1,74 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import ProgressBar from "react-bootstrap/ProgressBar";
 import {Container, Form, Button, FormGroup, FormLabel, FormControl} from 'react-bootstrap'
 
 
 export default function AccountEditForm(props) {
-    const [newAccount, setNewAccount] = useState({})
-    const [password, setPassword] = useState("");
+  const [newAccount, setNewAccount] = useState({})
+  const [password, setPassword] = useState("");
 
 
+  useEffect(() => {
+    setNewAccount(props.account)
+    console.log('set', newAccount);
+  }, [])
 
-    const handleChange = (event) => {
-        const attributeToChange = event.target.name
-        const newValue = event.target.value
+  const handleChange = (event) => {
+    const attributeToChange = event.target.name
+    const newValue = event.target.value
 
-        const account = {...newAccount}
-        account[attributeToChange] = newValue
-        console.log(account)
-        setNewAccount(account)
+    const account = { ...newAccount }
+    account[attributeToChange] = newValue
+    console.log(account)
+    setNewAccount(account)
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log('new', newAccount);
+    props.editAccount(newAccount)
+  }
+  const savePassword = (event) => {
+    setPassword(event.target.value)
+  }
+  function generateStrongPassword() {
+    const length = 12;
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]\:;?><,./-=";
+    let generatedPassword = "";
+
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      generatedPassword += charset.charAt(Math.floor(Math.random() * n));
     }
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        props.editAccount(newAccount)
-    }
-    const savePassword = (event) => {
-        setPassword(event.target.value)
-    }
-    function generateStrongPassword() {
-        const length = 12;
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]\:;?><,./-=";
-        let generatedPassword = "";
-      
-        for (let i = 0, n = charset.length; i < length; ++i) {
-          generatedPassword += charset.charAt(Math.floor(Math.random() * n));
-        }
-        setPassword(generatedPassword)
-        console.log("pass", password);
-        return generatedPassword;
-      }
+    setPassword(generatedPassword)
+    console.log("pass", password);
+    return generatedPassword;
+  }
 
-    const checkPass = (password)=>{
-            let strength = 0;
-            if (password.length >= 8) {
-              strength++;
-            }
-          
-            if (/[a-z]/.test(password)) {
-              strength++;
-            }
-          
-            if (/[A-Z]/.test(password)) {
-              strength++;
-            }
-          
-            if (/\d/.test(password)) {
-              strength++;
-            }
-          
-            if (/[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
-              strength++;
-            }
-          
-            console.log(strength);
-            return strength;
+  const checkPass = (password) => {
+    let strength = 0;
+    if (password.length >= 8) {
+      strength++;
     }
-    const passwordStrength = checkPass(password)
+
+    if (/[a-z]/.test(password)) {
+      strength++;
+    }
+
+    if (/[A-Z]/.test(password)) {
+      strength++;
+    }
+
+    if (/\d/.test(password)) {
+      strength++;
+    }
+
+    if (/[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
+      strength++;
+    }
+
+    console.log(strength);
+    return strength;
+  }
+  const passwordStrength = checkPass(password)
 
   return (
     <>
