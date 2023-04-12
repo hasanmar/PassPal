@@ -16,6 +16,6 @@ Passpal is a password management website.
  + React
  + Node.js
 ## Future enhancements
-Mre security
-Better ERD design
-Categories for passwords
++ More security
++ Better ERD design
++ Categories for passwords
