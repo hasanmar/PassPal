@@ -54,6 +54,10 @@ app.use('/', historyRoute);
 app.use('/', accountRoute);
 app.use('/', authRoute);
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
 
 // Node.js to look in a folder views for all the ejs files.
 app.set("view engine", "ejs");
@@ -62,9 +66,7 @@ app.set('views', './views');
 app.get('/signup', (req, res) => {
   res.render(__dirname + '/views/signup.ejs');
 });
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+
 
 
 
