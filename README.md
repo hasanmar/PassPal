@@ -7,7 +7,7 @@ Passpal is a password management website.
 
 
 ## getting started
-[Visit the deployed website by clicking here](render.com/passpal)
+[Visit the deployed website by clicking here](https://passpal.onrender.com)
 
 [Trello board](trello.com)
 ## Technologies used
