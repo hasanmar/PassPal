@@ -15,7 +15,7 @@ export default class Home extends Component {
             </p>
           </div>
           <div className="col-md-6">
-             <img src="wall-post-pana.jpg" alt="PassPal App" className="img-fluid rounded" style={{ float: 'right', width: '20%', height: 'auto', marginRight: '300px' }} />
+             <img src="Data_security_271-1140x570.jpg" alt="PassPal App" className="img-fluid rounded" style={{ float: 'right', width: '100%', height: 'auto', marginRight: '0px' }} />
           </div>
 
         </div>
