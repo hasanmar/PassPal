@@ -113,11 +113,3 @@ export default function AccountList() {
       )
 
 }
-
-
-// {(!isEdit) ?
-//   <AccountCreateForm addAccount={addAccount}/>
-//     :
-//   <AccountEditForm key={currentAccount._id} account={currentAccount}
-//   editAccount={editAccount} />
-//   }
