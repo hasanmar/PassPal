@@ -7,7 +7,8 @@ PassPal is a highly useful and secure password manager application designed to h
 
 
 ## Getting started
-[Visit the deployed website by clicking here](https://passpal.onrender.com)
+[Visit the deployed website by clicking here](https://trello.com/invite/b/qaWx1gLy/ATTI5f26e3999cedf8a9e70eb2b78128ccbf94118ECB/final-project)
+
 
 [Trello board](trello.com)
 ## Technologies used
